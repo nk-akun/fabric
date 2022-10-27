@@ -75,7 +75,7 @@ func (r *receiver) Ordered(msg *cb.Envelope) (messageBatches [][]*cb.Envelope, p
 	batchSize := ordererConfig.BatchSize()
 
 	messageSizeBytes := messageSizeBytes(msg)
-	if messageSizeBytes > batchSize.PreferredMaxBytes {
+	if messageSizeBytes > preferredMaxBytes {
 		logger.Debugf("The current message, with %v bytes, is larger than the preferred batch size of %v bytes and will be isolated.", messageSizeBytes, batchSize.PreferredMaxBytes)
 
 		// cut pending batch, if it has any messages
@@ -90,7 +90,7 @@ func (r *receiver) Ordered(msg *cb.Envelope) (messageBatches [][]*cb.Envelope, p
 		return
 	}
 
-	messageWillOverflowBatchSizeBytes := r.pendingBatchSizeBytes+messageSizeBytes > batchSize.PreferredMaxBytes
+	messageWillOverflowBatchSizeBytes := r.pendingBatchSizeBytes+messageSizeBytes > preferredMaxBytes
 
 	if messageWillOverflowBatchSizeBytes {
 		logger.Debugf("The current message, with %v bytes, will overflow the pending batch of %v bytes.", messageSizeBytes, r.pendingBatchSizeBytes)

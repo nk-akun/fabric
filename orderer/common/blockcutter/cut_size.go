@@ -8,6 +8,9 @@ const (
 
 	// 期望值
 	expectationMessageCount = 500
+
+	// 最大块大小
+	preferredMaxBytes = 2 * 1024 * 1024
 )
 
 var (
