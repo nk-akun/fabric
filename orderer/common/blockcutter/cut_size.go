@@ -7,7 +7,7 @@ const (
 	kd = 0.05
 
 	// 期望值
-	expectationMessageCount = 500
+	expectationMessageCount = 300
 
 	// 最大块大小
 	preferredMaxBytes = 2 * 1024 * 1024
