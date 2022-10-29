@@ -136,7 +136,7 @@ func (ch *chain) main() {
 				}
 				batches, _ := ch.support.BlockCutter().Ordered(msg.normalMsg)
 				if len(batches) == 0 && timer == nil {
-					timer = time.After(ch.support.SharedConfig().BatchTimeout())
+					timer = time.After(time.Second * 1) // mrk modified
 					continue
 				}
 				for _, batch := range batches {
