@@ -104,7 +104,7 @@ func (r *receiver) Ordered(msg *cb.Envelope) (messageBatches [][]*cb.Envelope, p
 	r.pendingBatchSizeBytes += messageSizeBytes
 	pending = true
 
-	if uint32(len(r.pendingBatch)) >= 40 {
+	if uint32(len(r.pendingBatch)) >= 60 {
 		logger.Debugf("Batch size met, cutting batch")
 		messageBatch := r.Cut()
 		messageBatches = append(messageBatches, messageBatch)
